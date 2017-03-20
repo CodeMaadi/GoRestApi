@@ -76,3 +76,14 @@ func DeleteMedicalRecord(w http.ResponseWriter, req *http.Request) {
     }
     json.NewEncoder(w).Encode(medicalRecords)
 }
+
+func GetPatientHistory(w http.ResponseWriter, req *http.Request) {
+    params := mux.Vars(req)
+    for _, item := range patientHistory {
+        if item.PatientId == params["patientid"] {
+            json.NewEncoder(w).Encode(item)
+            return
+        }
+    }
+    json.NewEncoder(w).Encode(&PatientHistory{})
+}
