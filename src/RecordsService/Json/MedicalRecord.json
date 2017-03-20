@@ -1,0 +1,14 @@
+{ 
+  "PatientId": "Test",
+  "Title": "Test",
+  "Link": "Test",
+  "HospitalName": "Test",
+  "HospitalId": "Test",
+  "HospitalLocation": "Test",
+  "Department": "Test",
+  "DoctorName": "Test",
+  "AdmissionDate": "Test",
+  "DischargeDate": "Test",
+  "Symptoms": "Test",
+  "Summary": "Test"
+}
