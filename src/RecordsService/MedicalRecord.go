@@ -1,16 +1,16 @@
 package main
 
 type MedicalRecord struct {
-	ID string `json:"Id"`
-	Title string `json:"Title"`
-	Link string `json:"Link"`
-	HospitalName string `json:"HospitalName"`
-	HospitalID string `json:"HospitalId"`
-	HospitalLocation string `json:"HospitalLocation"`
-	Department string `json:"Department"`
-	DoctorName string `json:"DoctorName"`
-	AdmissionDate string `json:"AdmissionDate"`
-	DischargeDate string `json:"DischargeDate"`
-	Symptoms string `json:"Symptoms"`
-	Summary string `json:"Summary"`
+	Id string `json:"Id,omitempty"`
+	Title string `json:"Title,omitempty"`
+	Link string `json:"Link,omitempty"`
+	HospitalName string `json:"HospitalName,omitempty"`
+	HospitalId string `json:"HospitalId,omitempty"`
+	HospitalLocation string `json:"HospitalLocation,omitempty"`
+	Department string `json:"Department,omitempty"`
+	DoctorName string `json:"DoctorName,omitempty"`
+	AdmissionDate string `json:"AdmissionDate,omitempty"`
+	DischargeDate string `json:"DischargeDate,omitempty"`
+	Symptoms string `json:"Symptoms,omitempty"`
+	Summary string `json:"Summary,omitempty"`
 }
