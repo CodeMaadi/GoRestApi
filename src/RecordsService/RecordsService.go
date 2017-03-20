@@ -1,7 +1,6 @@
 package main
  
 import (
-    "encoding/json"
     "log"
     "net/http"
  
@@ -9,49 +8,27 @@ import (
 )
  
 var users []User
- 
-func GetUser(w http.ResponseWriter, req *http.Request) {
-    params := mux.Vars(req)
-    for _, item := range users {
-        if item.Id == params["id"] {
-            json.NewEncoder(w).Encode(item)
-            return
-        }
-    }
-    json.NewEncoder(w).Encode(&User{})
-}
- 
-func GetUsers(w http.ResponseWriter, req *http.Request) {
-    json.NewEncoder(w).Encode(users)
-}
- 
-func CreateUser(w http.ResponseWriter, req *http.Request) {
-    params := mux.Vars(req)
-    var user User
-    _ = json.NewDecoder(req.Body).Decode(&user)
-    user.Id = params["id"]
-    users = append(users, user)
-    json.NewEncoder(w).Encode(users)
-}
- 
-func DeleteUser(w http.ResponseWriter, req *http.Request) {
-    params := mux.Vars(req)
-    for index, item := range users {
-        if item.Id == params["id"] {
-            users = append(users[:index], users[index+1:]...)
-            break
-        }
-    }
-    json.NewEncoder(w).Encode(users)
-}
- 
+var medicalRecords []MedicalRecord
+
 func main() {
     router := mux.NewRouter()
-    users = append(users, User{Id: "1", UserName: "ganeshRao", FirstName: "Ganesh", LastName: "Rao", Address: "Mahalakshmi Layout"})
+    
+	users = append(users, User{Id: "1", UserName: "ganeshRao", FirstName: "Ganesh", LastName: "Rao", Address: "Mahalakshmi Layout"})
     users = append(users, User{Id: "2", UserName: "kotiCheshte", FirstName: "Rajesh", LastName: "Venkataraman"})
+	
+	medicalRecords = append(medicalRecords, MedicalRecord{Id: "1", Title: "General Checkup", Symptoms: "Cough and Cold"})
+	medicalRecords = append(medicalRecords, MedicalRecord{Id: "2", Title: "Bedhi", Symptoms: "Bedhi"})
+	medicalRecords = append(medicalRecords, MedicalRecord{Id: "3", Title: "Knee ligament tear", Symptoms: "Knee ligament tear, thumba novu"})
+		
     router.HandleFunc("/users", GetUsers).Methods("GET")
     router.HandleFunc("/users/{id}", GetUser).Methods("GET")
     router.HandleFunc("/users/{id}", CreateUser).Methods("POST")
     router.HandleFunc("/users/{id}", DeleteUser).Methods("DELETE")
-    log.Fatal(http.ListenAndServe(":1234", router))
+	
+	router.HandleFunc("/medicalrecords", GetMedicalRecords).Methods("GET")
+    router.HandleFunc("/medicalrecords/{id}", GetMedicalRecord).Methods("GET")
+    router.HandleFunc("/medicalrecords/{id}", CreateMedicalRecord).Methods("POST")
+    router.HandleFunc("/medicalrecords/{id}", DeleteMedicalRecord).Methods("DELETE")
+	
+	log.Fatal(http.ListenAndServe(":1234", router))
 }
