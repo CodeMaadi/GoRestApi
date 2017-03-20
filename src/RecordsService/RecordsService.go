@@ -46,5 +46,6 @@ func main() {
 	
     router.HandleFunc("/patients/{patientid}/history", GetPatientHistory).Methods("GET")
 
+	// TODO: Implement GetPatientHistoryByMedicalRecordId
 	log.Fatal(http.ListenAndServe(":1234", router))
 }
