@@ -1,7 +1,6 @@
 package main
 
-type PatientHistory struct 
-{
-	PatientId string `json:"PatientId"`
+type PatientHistory struct {
+	PatientId      string          `json:"PatientId"`
 	MedicalRecords []MedicalRecord `json:"MedicalRecords"`
 }
